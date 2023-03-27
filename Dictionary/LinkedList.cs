@@ -2,7 +2,7 @@ namespace Dictionary;
 
 public class LinkedList
 {
-    private LinkedListNode _first;
+    private Node _first;
 
     public void Add(KeyValuePair pair)
     {

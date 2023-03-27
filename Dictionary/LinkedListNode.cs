@@ -1,14 +1,15 @@
 namespace Dictionary;
 
-public class LinkedListNode
+public class Node
 {
-    public KeyValuePair Pair { get; }
-        
-    public LinkedListNode Next { get; set; }
+    public string Id { get; }
+    public KeyValuePair<string, string> Pair { get; set; }
+    public Node Next { get; set; }
 
-    public LinkedListNode(KeyValuePair pair, LinkedListNode next = null)
+    public Node(string id, string key, string value)
     {
-        Pair = pair;
-        Next = next;
+        Id = id;
+        Pair = new KeyValuePair<string, string>(key, value);
+        Next = null;
     }
 }
