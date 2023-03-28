@@ -11,7 +11,7 @@ public class LinkedList
         count = 0;
     }
 
-    public void Add(string id, KeyValuePair<string, string> pair)
+    public void Add(string id, KeyValuePair pair)
     {
         Node newNode = new Node(id, pair);
         if (head == null)

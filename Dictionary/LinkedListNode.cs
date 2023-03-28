@@ -7,7 +7,7 @@ public class Node
     public KeyValuePair Pair { get; set; }
     public Node Next { get; set; }
 
-    public Node(string id, KeyValuePair<string, string> pair)
+    public Node(string id, KeyValuePair pair)
     {
         Id = id;
         Pair = pair;
