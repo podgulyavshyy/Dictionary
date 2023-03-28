@@ -59,6 +59,11 @@ public class LinkedList
         return false;
     }
 
+    public int Count()
+    {
+        return count;
+    }
+
     public KeyValuePair GetItemWithKey(string key)
     {
         // get pair with provided key, return null if not found
