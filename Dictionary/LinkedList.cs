@@ -30,14 +30,14 @@ public class LinkedList
         count++;
     }
 
-    public bool Remove(string id)
+    public bool RemoveByKey(string key)
     {
         if (head == null)
         {
             return false;
         }
 
-        if (head.Id == id )
+        if (head.Pair.Key == key )
         {
             head = head.Next;
             count--;
@@ -47,7 +47,7 @@ public class LinkedList
         Node current = head;
         while (current.Next != null)
         {
-            if (current.Next.Id == id)
+            if (current.Next.Pair.Key == key)
             {
                 current.Next = current.Next.Next;
                 count--;
@@ -59,6 +59,7 @@ public class LinkedList
         return false;
     }
 
+    
     public int Count()
     {
         return count;
@@ -66,7 +67,17 @@ public class LinkedList
 
     public KeyValuePair GetItemWithKey(string key)
     {
-        // get pair with provided key, return null if not found
-        return new KeyValuePair("", ""); // placeholder
+        Node current = head;
+        
+        while (current != null)
+        {
+            if (current.Pair.Key == key)
+            {
+                return current.Pair;
+            }
+            current = current.Next;
+        }
+        
+        return null;
     }
 }
