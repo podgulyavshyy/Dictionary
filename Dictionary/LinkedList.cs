@@ -2,16 +2,61 @@ namespace Dictionary;
 
 public class LinkedList
 {
-    private Node _first;
+    private Node head;
+    private int count;
 
-    public void Add(KeyValuePair pair)
+    public LinkedList()
     {
-        // add provided pair to the end of the linked list
+        head = null;
+        count = 0;
     }
 
-    public void RemoveByKey(string key)
+    public void Add(string id, KeyValuePair<string, string> pair)
     {
-        // remove pair with provided key
+        Node newNode = new Node(id, pair);
+        if (head == null)
+        {
+            head = newNode;
+        }
+        else
+        {
+            Node current = head;
+            while (current.Next != null)
+            {
+                current = current.Next;
+            }
+            current.Next = newNode;
+        }
+        count++;
+    }
+
+    public bool Remove(string id)
+    {
+        if (head == null)
+        {
+            return false;
+        }
+
+        if (head.Id == id )
+        {
+            head = head.Next;
+            count--;
+            return true;
+        }
+
+        Node current = head;
+        while (current.Next != null)
+        {
+            if (current.Next.Id == id)
+            {
+                current.Next = current.Next.Next;
+                count--;
+                return true;
+            }
+            current = current.Next;
+        }
+
+        return false;
     }
 
     public KeyValuePair GetItemWithKey(string key)

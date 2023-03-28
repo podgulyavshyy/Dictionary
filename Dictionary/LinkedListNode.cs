@@ -2,14 +2,15 @@ namespace Dictionary;
 
 public class Node
 {
+    
     public string Id { get; }
     public KeyValuePair<string, string> Pair { get; set; }
     public Node Next { get; set; }
 
-    public Node(string id, string key, string value)
+    public Node(string id, KeyValuePair<string, string> pair)
     {
         Id = id;
-        Pair = new KeyValuePair<string, string>(key, value);
+        Pair = pair;
         Next = null;
     }
 }
