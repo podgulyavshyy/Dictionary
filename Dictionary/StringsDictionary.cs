@@ -6,18 +6,15 @@ public class StringsDictionaryKSE
 {
     private const int InitialSize = 10;
 
-    private DictLinkedList _buckets = new DictLinkedList();
-
-    // private LinkedList[] _buckets;
+    private LinkedList[] _buckets = new LinkedList[InitialSize];
 
     public StringsDictionaryKSE()
     {
-        //_buckets = new LinkedList[InitialSize]
 
         for (int i = 0; i < InitialSize; i++)
         {
             LinkedList temp = new LinkedList();
-            _buckets.Add(temp);
+            _buckets[i] = temp;
         }
     }
         
@@ -26,34 +23,21 @@ public class StringsDictionaryKSE
         int temp = CalculateHash(key);
 
         var pair = new KeyValuePair(temp.ToString(), value);
-        int numElements = 0;
         
-        DictNode curr = _buckets.head;
-        // LinkedList actual = curr.List;
-        while (curr != null)
-        {
-            numElements += curr.List.Count();
-
-            curr = curr.Next;
-        }
+        int numElements = _buckets.Sum(t => t.Count());
 
         int test = 1;
         if (numElements != 0)
         {
             test = temp % numElements;
         }
-        int j = 0;
-        DictNode curr2 = _buckets.head;
-        while (curr2 != null)
+        for (int i = 0; i < _buckets.Length; i++)
         {
-            if (test == j)
+            if (test == i)
             {
-                curr2.List.Add(pair);
+                _buckets[i].Add(pair);
                 break;
             }
-
-            j++;
-            curr2 = curr2.Next;
         }
         
         // actual.Add(pair);
@@ -62,24 +46,18 @@ public class StringsDictionaryKSE
     public void Remove(string key)
     {
         int temp = CalculateHash(key);
-        DictNode curr = _buckets.head;
-        while (curr != null)
+        for (int i = 0; i < _buckets.Length; i++)
         {
-            curr.List.RemoveByKey(temp.ToString());
-
-            curr = curr.Next;
+            _buckets[i].RemoveByKey(temp.ToString());
         }
     }
 
     public string Get(string key)
     {
         int temp = CalculateHash(key);
-        DictNode curr = _buckets.head;
-        while (curr != null)
+        for (int i = 0; i < _buckets.Length; i++)
         {
-            return curr.List.GetItemWithKey(temp.ToString()).Value;
-            
-            curr = curr.Next;
+            return _buckets[i].GetItemWithKey(temp.ToString()).Value;
         }
         return "Not found";
     }
