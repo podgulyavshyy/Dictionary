@@ -16,7 +16,7 @@ class Program
         test.Add("five","fivevalue");
         test.Add("six","sixvalue");
         Console.WriteLine("Hello, World!");
-        var one = test.Get("five");
+        var one = test.Get("four");
         
         Console.WriteLine(one);
     }

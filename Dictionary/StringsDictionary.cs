@@ -26,14 +26,14 @@ public class StringsDictionaryKSE
         
         int numElements = _buckets.Sum(t => t.Count());
 
-        int test = 1;
+        int test = 0;
         if (numElements != 0)
         {
             test = temp % numElements;
         }
         for (int i = 0; i < _buckets.Length; i++)
         {
-            if (test == i)
+            if (Math.Abs(test) == i)
             {
                 _buckets[i].Add(pair);
                 break;
@@ -55,11 +55,15 @@ public class StringsDictionaryKSE
     public string Get(string key)
     {
         int temp = CalculateHash(key);
+        var val = "";
         for (int i = 0; i < _buckets.Length; i++)
         {
-            return _buckets[i].GetItemWithKey(temp.ToString()).Value;
+            if (_buckets[i].GetItemWithKey(temp.ToString()).Value != "not found")
+            {
+                return _buckets[i].GetItemWithKey(temp.ToString()).Value;
+            }
         }
-        return "Not found";
+        return "No";
     }
 
 

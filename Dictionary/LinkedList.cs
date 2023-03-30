@@ -78,7 +78,7 @@ public class LinkedList
             current = current.Next;
         }
         
-        return null;
+        return new KeyValuePair("not found", "not found");
     }
     
 }
