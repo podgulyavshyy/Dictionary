@@ -8,16 +8,23 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
-        StringsDictionaryKSE test = new StringsDictionaryKSE();
-        test.Add("one","onevalue");
-        test.Add("two","twovalue");
-        test.Add("three","threevalue");
-        test.Add("four","fourvalue");
-        test.Add("five","fivevalue");
-        test.Add("six","sixvalue");
-        Console.WriteLine("Hello, World!");
-        var one = test.Get("four");
+        StringsDictionaryKSE dict = new StringsDictionaryKSE();
+       
         
-        Console.WriteLine(one);
+
+        string[] words = File.ReadAllLines("../../dictionary.txt");
+        int t = 0;
+        foreach (var word in words)
+        {   
+            
+            string[] splitted = word.Split(new[] { ';' }, 2);
+            //Console.WriteLine(splitted[0]);
+            t++;
+            dict.Add(splitted[0], splitted[1]);
+            dict.Add("splitted[0]", "splitted[1]");
+        }
+        
+        Console.WriteLine(t);
+        Console.WriteLine(dict.Get("ZYTHUM"));
     }
 }
