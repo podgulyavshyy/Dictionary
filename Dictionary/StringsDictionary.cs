@@ -26,21 +26,37 @@ public class StringsDictionaryKSE
         int temp = CalculateHash(key);
 
         var pair = new KeyValuePair(temp.ToString(), value);
-        int leastElements = 0;
+        int numElements = 0;
         
         DictNode curr = _buckets.head;
-        LinkedList actual = curr.List;
+        // LinkedList actual = curr.List;
         while (curr != null)
         {
-            if (curr.List.Count() < leastElements)
-            {
-                leastElements = curr.List.Count();
-                actual = curr.List;
-            }
+            numElements += curr.List.Count();
 
             curr = curr.Next;
         }
-        actual.Add(pair);
+
+        int test = 1;
+        if (numElements != 0)
+        {
+            test = temp % numElements;
+        }
+        int j = 0;
+        DictNode curr2 = _buckets.head;
+        while (curr2 != null)
+        {
+            if (test == j)
+            {
+                curr2.List.Add(pair);
+                break;
+            }
+
+            j++;
+            curr2 = curr2.Next;
+        }
+        
+        // actual.Add(pair);
     }
 
     public void Remove(string key)
