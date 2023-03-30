@@ -20,25 +20,12 @@ public class StringsDictionaryKSE
         
     public void Add(string key, string value)
     {
-        int temp = CalculateHash(key);
+        int hash = Math.Abs(CalculateHash(key));
+        var idx = hash % InitialSize;
 
-        var pair = new KeyValuePair(temp.ToString(), value);
+        var pair = new KeyValuePair(key, value);
         
-        int numElements = _buckets.Sum(t => t.Count());
-
-        int test = 0;
-        if (numElements != 0)
-        {
-            test = temp % numElements;
-        }
-        for (int i = 0; i < _buckets.Length; i++)
-        {
-            if (Math.Abs(test) == i)
-            {
-                _buckets[i].Add(pair);
-                break;
-            }
-        }
+        _buckets[idx].Add(pair);
         
         // actual.Add(pair);
     }
@@ -54,7 +41,7 @@ public class StringsDictionaryKSE
 
     public string Get(string key)
     {
-        int temp = CalculateHash(key);
+        var temp = key;
         var val = "";
         for (int i = 0; i < _buckets.Length; i++)
         {

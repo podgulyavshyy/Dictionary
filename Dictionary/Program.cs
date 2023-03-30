@@ -21,10 +21,10 @@ class Program
             //Console.WriteLine(splitted[0]);
             t++;
             dict.Add(splitted[0], splitted[1]);
-            dict.Add("splitted[0]", "splitted[1]");
+            //dict.Add("splitted[0]", "splitted[1]");
         }
         
         Console.WriteLine(t);
-        Console.WriteLine(dict.Get("ZYTHUM"));
+        Console.WriteLine(dict.Get("A-"));
     }
 }
