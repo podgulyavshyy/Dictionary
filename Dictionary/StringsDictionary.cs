@@ -50,7 +50,23 @@ public class StringsDictionaryKSE
                 return _buckets[i].GetItemWithKey(temp.ToString()).Value;
             }
         }
-        return GetClosest(key);
+        char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+        string test = temp;
+        foreach (var letter in letters)
+        {
+            test = temp.Replace(temp[0], letter);
+            for (int i = 0; i < _buckets.Length; i++)
+            {
+                if (_buckets[i].GetItemWithKey(test.ToString()).Value != "not found")
+                {
+                    return _buckets[i].GetItemWithKey(test.ToString()).Value;
+                }
+            }
+        }
+        return "No similarities";
+        
+        
+        // return GetClosest(key);
     }
 
     
