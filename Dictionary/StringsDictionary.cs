@@ -50,10 +50,30 @@ public class StringsDictionaryKSE
                 return _buckets[i].GetItemWithKey(temp.ToString()).Value;
             }
         }
-        return "No";
+        return GetClosest(key);
     }
 
-
+    
+    private string GetClosest(string wordStart)
+    {
+        /*string[] letters = new[]
+        {
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+            "V", "W", "X", "Y", "Z"
+        };*/
+        char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+        string test = "";
+        for (int i = 0; i < letters.Length; i++)
+        {
+            test = wordStart.Replace(wordStart[0], letters[i]);
+            if (this.Get(test) != "No")
+            {
+                return test;
+            }
+        }
+        return "No similarities";
+    }
+    
     private int CalculateHash(string key)
     {
         // function to convert string value to number 

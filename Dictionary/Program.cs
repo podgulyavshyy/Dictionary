@@ -24,7 +24,15 @@ class Program
             //dict.Add("splitted[0]", "splitted[1]");
         }
         
+        
+        
         Console.WriteLine(t);
-        Console.WriteLine(dict.Get("A-"));
+        Console.WriteLine(dict.Get("CAR"));
+        while (true)
+        {
+            Console.WriteLine("Enter word(caps): ");
+            var input = Console.ReadLine();
+            Console.WriteLine(dict.Get(input));
+        }
     }
 }
