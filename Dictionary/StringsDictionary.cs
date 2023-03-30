@@ -63,9 +63,9 @@ public class StringsDictionaryKSE
         };*/
         char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
         string test = "";
-        for (int i = 0; i < letters.Length; i++)
+        foreach (var letter in letters)
         {
-            test = wordStart.Replace(wordStart[0], letters[i]);
+            test = wordStart.Replace(wordStart[0], letter);
             if (this.Get(test) != "No")
             {
                 return test;
