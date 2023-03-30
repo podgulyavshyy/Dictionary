@@ -3,13 +3,13 @@ namespace Dictionary;
 public class Node
 {
     
-    public string Id { get; }
+    //public string Id { get; }
     public KeyValuePair Pair { get; set; }
     public Node Next { get; set; }
 
-    public Node(string id, KeyValuePair pair)
+    public Node(KeyValuePair pair)
     {
-        Id = id;
+        //Id = id;
         Pair = pair;
         Next = null;
     }

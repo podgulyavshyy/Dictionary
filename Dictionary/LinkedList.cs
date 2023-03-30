@@ -2,7 +2,7 @@ namespace Dictionary;
 
 public class LinkedList
 {
-    private Node head;
+    public Node head { get; set; }
     private int count;
 
     public LinkedList()
@@ -11,9 +11,9 @@ public class LinkedList
         count = 0;
     }
 
-    public void Add(string id, KeyValuePair pair)
+    public void Add(KeyValuePair pair)
     {
-        Node newNode = new Node(id, pair);
+        Node newNode = new Node(pair);
         if (head == null)
         {
             head = newNode;
@@ -80,4 +80,5 @@ public class LinkedList
         
         return null;
     }
+    
 }
