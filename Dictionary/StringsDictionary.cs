@@ -69,27 +69,6 @@ public class StringsDictionaryKSE
         // return GetClosest(key);
     }
 
-    
-    private string GetClosest(string wordStart)
-    {
-        /*string[] letters = new[]
-        {
-            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-            "V", "W", "X", "Y", "Z"
-        };*/
-        char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-        string test = "";
-        foreach (var letter in letters)
-        {
-            test = wordStart.Replace(wordStart[0], letter);
-            if (this.Get(test) != "No")
-            {
-                return test;
-            }
-        }
-        return "No similarities";
-    }
-    
     private int CalculateHash(string key)
     {
         // function to convert string value to number 
