@@ -8,6 +8,16 @@ public class StringsDictionaryKSE
 
     private LinkedList[] _buckets = new LinkedList[InitialSize];
 
+    public double GetLoadFactor()
+    {
+        int count = 0;
+        foreach (var bucket in _buckets)
+        {
+            count += bucket.Count();
+        }
+        return (double)count / _buckets.Length;
+    }
+
     public StringsDictionaryKSE()
     {
 
@@ -20,14 +30,31 @@ public class StringsDictionaryKSE
         
     public void Add(string key, string value)
     {
-        int hash = Math.Abs(CalculateHash(key));
-        var idx = hash % InitialSize;
+        double loadFactor = GetLoadFactor();
+        if (loadFactor >= 0.8)
+        {
+            int newSize = _buckets.Length * 2;
+            var newBuckets = new LinkedList[newSize];
+            for (int i = 0; i < newSize; i++)
+            {
+                newBuckets[i] = new LinkedList();
+            }
+            foreach (var bucket in _buckets)
+            {
+                while(bucket.head != null){
+                    
+                    var pair = bucket.head.Pair;
+                    int hash = Math.Abs(CalculateHash(pair.Key));
+                    int idx = hash % newSize;
+                    newBuckets[idx].Add(new KeyValuePair(key, value));
+                    bucket.head = bucket.head.Next;
+                }
+            }
+            _buckets = newBuckets;
+        }
+        int bucketIndex = Math.Abs(CalculateHash(key)) % _buckets.Length;
+        _buckets[bucketIndex].Add(new KeyValuePair(key, value));
 
-        var pair = new KeyValuePair(key, value);
-        
-        _buckets[idx].Add(pair);
-        
-        // actual.Add(pair);
     }
 
     public void Remove(string key)
