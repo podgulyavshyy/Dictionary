@@ -8,16 +8,6 @@ public class StringsDictionaryKSE
 
     private LinkedList[] _buckets = new LinkedList[InitialSize];
 
-    public double GetLoadFactor()
-    {
-        int count = 0;
-        foreach (var bucket in _buckets)
-        {
-            count += bucket.Count();
-        }
-        return (double)count / _buckets.Length;
-    }
-
     public StringsDictionaryKSE()
     {
 
@@ -46,7 +36,7 @@ public class StringsDictionaryKSE
                     var pair = bucket.head.Pair;
                     int hash = Math.Abs(CalculateHash(pair.Key));
                     int idx = hash % newSize;
-                    newBuckets[idx].Add(new KeyValuePair(key, value));
+                    newBuckets[idx].Add(pair);
                     bucket.head = bucket.head.Next;
                 }
             }
@@ -90,16 +80,21 @@ public class StringsDictionaryKSE
                 }
             }
         }
+        
         return "No similarities";
-        
-        
-        // return GetClosest(key);
     }
-
+    
+    public double GetLoadFactor()
+    {
+        int count = 0;
+        foreach (var bucket in _buckets)
+        {
+            count += bucket.Count();
+        }
+        return (double)count / _buckets.Length;
+    }
     private int CalculateHash(string key)
     {
-        // function to convert string value to number 
-        // to do
-        return key.GetHashCode(); // placeholder
+        return key.GetHashCode(); // to do
     }
 }

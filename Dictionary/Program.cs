@@ -7,27 +7,25 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Working...");
         StringsDictionaryKSE dict = new StringsDictionaryKSE();
        
         
 
         string[] words = File.ReadAllLines("../../dictionary.txt");
-        int t = 0;
+        // int t = 0;
         foreach (var word in words)
         {   
             
             string[] splitted = word.Split(new[] { ';' }, 2);
-            //Console.WriteLine(splitted[0]);
-            t++;
+            // t++;
             dict.Add(splitted[0], splitted[1]);
-            //dict.Add("splitted[0]", "splitted[1]");
         }
         
         
         
-        Console.WriteLine(t);
-        Console.WriteLine(dict.Get("CAR"));
+        // Console.WriteLine(t);
+        // Console.WriteLine(dict.Get("CAR"));
         while (true)
         {
             Console.WriteLine("Enter word(caps): ");
